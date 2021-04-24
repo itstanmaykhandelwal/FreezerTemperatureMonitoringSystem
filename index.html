@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg justify-content-center navbar-light bg-light">
+        <h1>Freezer Temperature Monitoring System</h1>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-md-3 box">
+                <canvas id="myTemp" style="width:100%;max-width:600px;height:200px;"></canvas>
+            </div>
+            <div class="col-md-3 box">
+                <canvas id="myCurrent" style="width:100%;max-width:600px;height:200px;"></canvas>
+            </div>
+            <div class="col-md-4  box">
+                <canvas id="myChart" style="width:100%;max-width:600px;"></canvas>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-5  box">
+                <canvas id="temperatureTrend" style="width:100%;max-width:600px"></canvas>
+            </div>
+            <div class="col-lg-5  box">
+                <canvas id="canvas" style="width: 75%;"></canvas>
+            </div>
+          </div>
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+<script>
+var xValues = ["70"];
+var yValues = [70,30];
+var barColors = [
+    "#b91d47",
+    "#00aba9",
+];
+        
+    new Chart("myTemp", {
+        type: "doughnut",
+        data: {
+            labels: xValues,
+            datasets: [{
+              backgroundColor: barColors,
+              data: yValues
+            }]
+        },
+        options: {
+        title: {
+            display: true,
+            text: "Temperature"
+        }
+    }
+});
+var xValues = ["60"];
+var yValues = [60,40];
+var barColors = [
+    "#1e7145",
+    "#e8c3b9",
+];
+  
+new Chart("myCurrent", {
+        type: "doughnut",
+        data: {
+            labels: xValues,
+            datasets: [{
+              backgroundColor: barColors,
+              data: yValues
+            }]
+        },
+        options: {
+        title: {
+            display: true,
+            text: "Current"
+        }
+    }
+});
+
+// Current Consumption
+var xValues = [100,200,300,400,500,600,700,800,900,1000];
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{ 
+      data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+      borderColor: "red",
+      fill: false
+    },]
+  },
+  options: {
+    legend: {display: false}
+  }
+});
+
+// temperature trend
+var xValues = [100,200,300,400,500,600,700,800,900,1000];
+
+new Chart("temperatureTrend", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{ 
+      data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+      borderColor: "red",
+      fill: false
+    },]
+  },
+  options: {
+    legend: {display: false}
+  }
+});
+
+
+// GRAPH
+var barChartData = {
+  labels: [
+    "9am",
+    "1am",
+    "5pm",
+    "9pm",
+    "1am",
+    "5am",
+  ],
+  datasets: [
+    {
+      label: "Avg Current",
+      backgroundColor: "pink",
+      borderColor: "red",
+      borderWidth: 1,
+      data: [3, 5, 6, 7,3, 5, 6, 7]
+    },
+    {
+      label: "Temperature",
+      backgroundColor: "lightblue",
+      borderColor: "blue",
+      borderWidth: 1,
+      data: [4, 7, 3, 6, 10,7,4,6]
+    },
+  ]
+};
+
+var chartOptions = {
+  responsive: true,
+  legend: {
+    position: "top"
+  },
+  title: {
+    display: true,
+    text: "Chart.js Bar Chart"
+  },
+  scales: {
+    yAxes: [{
+      ticks: {
+        beginAtZero: true
+      }
+    }]
+  }
+}
+
+window.onload = function() {
+  var ctx = document.getElementById("canvas").getContext("2d");
+  window.myBar = new Chart(ctx, {
+    type: "bar",
+    data: barChartData,
+    options: chartOptions
+  });
+};
+</script>
+
+
+</body>
+</html>
