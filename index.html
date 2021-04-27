@@ -8,180 +8,434 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+    <script src="app.js"></script>
+
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg justify-content-center navbar-light bg-light">
-        <h1>Freezer Temperature Monitoring System</h1>
-    </nav>
-
-    <div class="container-fluid">
-        <div class="row ">
-            <div class="col-md-3 box">
-                <canvas id="myTemp" style="width:100%;max-width:600px;height:200px;"></canvas>
-            </div>
-            <div class="col-md-3 box">
-                <canvas id="myCurrent" style="width:100%;max-width:600px;height:200px;"></canvas>
-            </div>
-            <div class="col-md-4  box">
-                <canvas id="myChart" style="width:100%;max-width:600px;"></canvas>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-5  box">
-                <canvas id="temperatureTrend" style="width:100%;max-width:600px"></canvas>
-            </div>
-            <div class="col-lg-5  box">
-                <canvas id="canvas" style="width: 75%;"></canvas>
-            </div>
-          </div>
+    
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <h2 class="text-center">MACHINE DASHBOARD-CELL 1</h2>
     </div>
+  </nav>
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-xl-2 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2 bg-success">
+          <div class="card-body ">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs text-center font-weight-bold text-white text-uppercase mb-1">
+                  Running
+                </div>
+                <div class="h2 mb-0 text-center font-weight-bold text-gray-800">
+                  15
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-cog fa-2x text-gray-300"></i>
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2 bg-danger">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs text-center font-weight-bold text-white text-uppercase mb-1">
+                  DOWN
+                </div>
+                <div class="h5 mb-0 text-center font-weight-bold text-gray-800">
+                  02
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-exclamation-triangle fa-2x text-gray-300"></i>
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2 bg-secondary">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs text-center font-weight-bold text-white text-uppercase mb-1">
+                  NO PLAN
+                </div>
+                <div class="h5 mb-0 text-center font-weight-bold text-gray-800">
+                  01
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-file-invoice fa-2x text-gray-300"></i>
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2 bg-warning">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs text-center font-weight-bold text-white text-uppercase mb-1">
+                  MOULD CHANG
+                </div>
+                <div class="h5 mb-0 text-center font-weight-bold text-gray-800">
+                  00
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-sync fa-2x text-gray-300"></i>
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2 bg-primary">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs text-center font-weight-bold text-white text-uppercase mb-1">
+                  Date & Time
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="far fa-clock fa-2x text-gray-300"></i>
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
 
 
-
-    <!-- JAVASCRIPT -->
-<script>
-var xValues = ["70"];
-var yValues = [70,30];
-var barColors = [
-    "#b91d47",
-    "#00aba9",
-];
-        
-    new Chart("myTemp", {
-        type: "doughnut",
-        data: {
-            labels: xValues,
-            datasets: [{
-              backgroundColor: barColors,
-              data: yValues
-            }]
-        },
-        options: {
-        title: {
-            display: true,
-            text: "Temperature"
-        }
-    }
-});
-var xValues = ["60"];
-var yValues = [60,40];
-var barColors = [
-    "#1e7145",
-    "#e8c3b9",
-];
   
-new Chart("myCurrent", {
-        type: "doughnut",
-        data: {
-            labels: xValues,
-            datasets: [{
-              backgroundColor: barColors,
-              data: yValues
-            }]
-        },
-        options: {
-        title: {
-            display: true,
-            text: "Current"
-        }
-    }
-});
-
-// Current Consumption
-var xValues = [100,200,300,400,500,600,700,800,900,1000];
-
-new Chart("myChart", {
-  type: "line",
-  data: {
-    labels: xValues,
-    datasets: [{ 
-      data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
-      borderColor: "red",
-      fill: false
-    },]
-  },
-  options: {
-    legend: {display: false}
-  }
-});
-
-// temperature trend
-var xValues = [100,200,300,400,500,600,700,800,900,1000];
-
-new Chart("temperatureTrend", {
-  type: "line",
-  data: {
-    labels: xValues,
-    datasets: [{ 
-      data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
-      borderColor: "red",
-      fill: false
-    },]
-  },
-  options: {
-    legend: {display: false}
-  }
-});
+  <!-- NEXT ROW -->
 
 
-// GRAPH
-var barChartData = {
-  labels: [
-    "9am",
-    "1am",
-    "5pm",
-    "9pm",
-    "1am",
-    "5am",
-  ],
-  datasets: [
-    {
-      label: "Avg Current",
-      backgroundColor: "pink",
-      borderColor: "red",
-      borderWidth: 1,
-      data: [3, 5, 6, 7,3, 5, 6, 7]
-    },
-    {
-      label: "Temperature",
-      backgroundColor: "lightblue",
-      borderColor: "blue",
-      borderWidth: 1,
-      data: [4, 7, 3, 6, 10,7,4,6]
-    },
-  ]
-};
 
-var chartOptions = {
-  responsive: true,
-  legend: {
-    position: "top"
-  },
-  title: {
-    display: true,
-    text: "Chart.js Bar Chart"
-  },
-  scales: {
-    yAxes: [{
-      ticks: {
-        beginAtZero: true
-      }
-    }]
-  }
-}
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100  bg-dark">
+          <nav class="navbar navbar-expand-lg navbar-light bg-danger">
+            <div class="container">
+              <a class="navbar-brand p-0" href="#">L01-FUTURA220</a>
+              <span class="ml-auto">Bend 45 dEg [S-J Type]</span>
+            </div>
+          </nav>
+          <div class="card-body ">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="font-weight-light text-white text-uppercase mb-1">
+                  down the since
+                </div>
+                <div class="font-weight-bold text-danger text-uppercase mb-1">
+                  Time and Date
+                </div>
+                <div class="font-weight-light text-white text-uppercase mb-1">
+                  down time since
+                </div>
+                <span class="font-weight-bold ">N/A</span>
+              </div>
+              <div class="col-auto">
+                <canvas id="graph"></canvas> 
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100  bg-dark">
+          <nav class="navbar navbar-expand-lg navbar-light bg-success">
+            <div class="container">
+              <a class="navbar-brand p-0" href="#">L02-FUTURA220</a>
+              <span class="ml-auto">Bend 45 dEg [S-J Type]</span>
+            </div>
+          </nav>
+          <div class="card-body ">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs text-white text-uppercase mb-1">
+                  Actual
+                </div>
+                <div class="font-weight-bold text-success text-uppercase mb-1">
+                  918
+                </div>
+                <div class="row justify-content-between pl-3">
+                  <div class=" mt-1">
+                    <h5>Planned</h5>
+                    <p>5000</p>
+                  </div>
+                  <div class=" mt-1">
+                    <h5>Target</h5>
+                    <p>1250</p>
+                  </div>
+                </div>  
+              </div>
+              <div class="col-auto">
+                <canvas id="graphTwo"></canvas> 
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100  bg-dark">
+          <nav class="navbar navbar-expand-lg navbar-light bg-success">
+            <div class="container">
+              <a class="navbar-brand p-0" href="#">L03-FUTURA220</a>
+              <span class="ml-auto">Bend 45 dEg [S-J Type]</span>
+            </div>
+          </nav>
+          <div class="card-body ">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs text-white text-uppercase mb-1">
+                  Actual
+                </div>
+                <div class="font-weight-bold text-success text-uppercase mb-1">
+                  7930
+                </div>
+                <div class="row justify-content-between pl-3">
+                  <div class=" mt-1">
+                    <h5>Planned</h5>
+                    <p>14000</p>
+                  </div>
+                  <div class=" mt-1">
+                    <h5>Target</h5>
+                    <p>8200</p>
+                  </div>
+                </div>  
+              </div>
+              <div class="col-auto">
+                <canvas id="graphThree"></canvas> 
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100  bg-dark">
+          <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+            <div class="container">
+              <a class="navbar-brand p-0" href="#">L04-FUTURA220</a>
+              <span class="ml-auto">Bend 45 dEg [S-J Type]</span>
+            </div>
+          </nav>
+          <div class="card-body ">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs text-white text-uppercase mb-1">
+                  No plan shots
+                </div>
+                <div class="font-weight-bold text-success text-uppercase mb-1">
+                  0
+                </div>
+                <div class="font-weight-light text-white text-uppercase mb-1">
+                  no plan since
+                </div>
+                <span class="font-weight-bolder ">-</span>  
+              </div>
+              <div class="col-auto">
+                <canvas id="graphFour"></canvas> 
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100  bg-dark">
+          <nav class="navbar navbar-expand-lg navbar-light bg-success">
+            <div class="container">
+              <a class="navbar-brand p-0" href="#">L05-FUTURA220</a>
+              <span class="ml-auto">Bend 45 dEg [S-J Type]</span>
+            </div>
+          </nav>
+          <div class="card-body ">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs text-white text-uppercase mb-1">
+                  Actual
+                </div>
+                <div class="font-weight-bold text-success text-uppercase mb-1">
+                  1695
+                </div>
+                <div class="row justify-content-between pl-3">
+                  <div class=" mt-1">
+                    <h5>Planned</h5>
+                    <p>10000</p>
+                  </div>
+                  <div class=" mt-1">
+                    <h5>Target</h5>
+                    <p>2220</p>
+                  </div>
+                </div>  
+              </div>
+              <div class="col-auto">
+                <canvas id="graphFive"></canvas> 
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100  bg-dark">
+          <nav class="navbar navbar-expand-lg navbar-light bg-success">
+            <div class="container">
+              <a class="navbar-brand p-0" href="#">L06-FUTURA220</a>
+              <span class="ml-auto">Bend 45 dEg [S-J Type]</span>
+            </div>
+          </nav>
+          <div class="card-body ">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs text-white text-uppercase mb-1">
+                  Actual
+                </div>
+                <div class="font-weight-bold text-success text-uppercase mb-1">
+                  3912
+                </div>
+                <div class="row justify-content-between pl-3">
+                  <div class=" mt-1">
+                    <h5>Planned</h5>
+                    <p>6500</p>
+                  </div>
+                  <div class=" mt-1">
+                    <h5>Target</h5>
+                    <p>4260</p>
+                  </div>
+                </div>  
+              </div>
+              <div class="col-auto">
+                <canvas id="graphSix"></canvas> 
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100  bg-dark">
+          <nav class="navbar navbar-expand-lg navbar-light bg-success">
+            <div class="container">
+              <a class="navbar-brand p-0" href="#">L07-FUTURA220</a>
+              <span class="ml-auto">Bend 45 dEg [S-J Type]</span>
+            </div>
+          </nav>
+          <div class="card-body ">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs text-white text-uppercase mb-1">
+                  Actual
+                </div>
+                <div class="font-weight-bold text-success text-uppercase mb-1">
+                  439
+                </div>
+                <div class="row justify-content-between pl-3">
+                  <div class=" mt-1">
+                    <h5>Planned</h5>
+                    <p>2900</p>
+                  </div>
+                  <div class=" mt-1">
+                    <h5>Target</h5>
+                    <p>520</p>
+                  </div>
+                </div>  
+              </div>
+              <div class="col-auto">
+                <canvas id="graphSeven"></canvas> 
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100  bg-dark">
+          <nav class="navbar navbar-expand-lg navbar-light bg-success">
+            <div class="container">
+              <a class="navbar-brand p-0" href="#">L08-FUTURA220</a>
+              <span class="ml-auto">Bend 45 dEg [S-J Type]</span>
+            </div>
+          </nav>
+          <div class="card-body ">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs text-white text-uppercase mb-1">
+                  Actual
+                </div>
+                <div class="font-weight-bold text-success text-uppercase mb-1">
+                  4899
+                </div>
+                <div class="row justify-content-between pl-3">
+                  <div class=" mt-1">
+                    <h5>Planned</h5>
+                    <p>12000</p>
+                  </div>
+                  <div class=" mt-1">
+                    <h5>Target</h5>
+                    <p>5100</p>
+                  </div>
+                </div>  
+              </div>
+              <div class="col-auto">
+                <canvas id="graphEight"></canvas> 
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100  bg-dark">
+          <nav class="navbar navbar-expand-lg navbar-light bg-success">
+            <div class="container">
+              <a class="navbar-brand p-0" href="#">L09-FUTURA220</a>
+              <span class="ml-auto">Bend 45 dEg [S-J Type]</span>
+            </div>
+          </nav>
+          <div class="card-body ">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs text-white text-uppercase mb-1">
+                  Actual
+                </div>
+                <div class="font-weight-bold text-success text-uppercase mb-1">
+                  1356
+                </div>
+                <div class="row justify-content-between pl-3">
+                  <div class=" mt-1">
+                    <h5>Planned</h5>
+                    <p>9600</p>
+                  </div>
+                  <div class=" mt-1">
+                    <h5>Target</h5>
+                    <p>1400</p>
+                  </div>
+                </div>  
+              </div>
+              <div class="col-auto">
+                <canvas id="graphNine"></canvas> 
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>    
 
-window.onload = function() {
-  var ctx = document.getElementById("canvas").getContext("2d");
-  window.myBar = new Chart(ctx, {
-    type: "bar",
-    data: barChartData,
-    options: chartOptions
-  });
-};
-</script>
 
+  <script src="app.js"></script>
 
 </body>
 </html>

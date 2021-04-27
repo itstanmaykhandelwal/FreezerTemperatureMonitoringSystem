@@ -1,29 +1,6 @@
-.box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f3f3f3;
-    margin:30px;
-    padding: 10px;
-    width: 150%;
-    border-radius: 50px;
-    min-height: 130px;
-    border: 2px #ccc solid;
-    color: #fff;
-}
-.first-row{
-    display: flex;
-    width: 50%;
-    justify-content: space-between;
-}
-.columns{
-    margin: 30px 0;
-}
-@media only screen and (min-width:512px){
-    .col-md-3{
-        width: 25%;
-    }
-    .col-lg-5{
-        width: 25%;
-    }
+.navbar h2{
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    padding: 0; 
 }
